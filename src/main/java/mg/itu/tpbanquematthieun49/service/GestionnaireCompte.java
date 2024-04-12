@@ -47,4 +47,20 @@ public class GestionnaireCompte {
         TypedQuery<CompteBancaire> query = em.createNamedQuery("CompteBancaire.findAll", CompteBancaire.class);
         return query.getResultList();
     }
+
+    public CompteBancaire findById(Long idCompteBancaire) {
+        return em.find(CompteBancaire.class, idCompteBancaire);
+    }
+    
+    @Transactional
+    public void transfererArgent(Long idSource,Long idDestination,int montant){
+        CompteBancaire source = this.findById(idSource);
+        CompteBancaire destination = this.findById(idDestination);
+        
+        source.setSolde(source.getSolde()-montant);
+        destination.setSolde(destination.getSolde()+montant);
+        
+        em.persist(source);
+        em.persist(destination);
+    }
 }
