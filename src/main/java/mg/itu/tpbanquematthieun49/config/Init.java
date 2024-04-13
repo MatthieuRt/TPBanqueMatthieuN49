@@ -23,13 +23,9 @@ public class Init {
     @Inject
     GestionnaireCompte gestionnaireCompte;
 
-    private int nbComptes() {
-        return gestionnaireCompte.getAllComptes().size();
-    }
-
     public void init(@Observes
             @Initialized(ApplicationScoped.class) ServletContext context) {
-        if (this.nbComptes() == 0) {
+        if (gestionnaireCompte.nbComptes() == 0) {
             CompteBancaire c1 = new CompteBancaire("John Lennon", 150000);
             CompteBancaire c2 = new CompteBancaire("Paul McCartney", 950000);
             CompteBancaire c3 = new CompteBancaire("Ringo Starr", 20000);

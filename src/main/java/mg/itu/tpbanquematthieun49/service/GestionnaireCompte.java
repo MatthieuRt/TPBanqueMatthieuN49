@@ -68,6 +68,15 @@ public class GestionnaireCompte {
     public void update(CompteBancaire compteBancaire){
         em.merge(compteBancaire);
     }
+    
+    @Transactional
+    public Long nbComptes(){
+        TypedQuery<Long> query = em.createNamedQuery("CompteBancaire.count", Long.class);
+        // Exécutez la requête et récupérez le résultat
+        Long compteCount = query.getSingleResult();
+        // Retournez le nombre de comptes
+        return compteCount;
+    }
         /**
      * Dépôt d'argent sur un compte bancaire.
      * @param compteBancaire
