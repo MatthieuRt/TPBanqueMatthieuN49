@@ -12,7 +12,7 @@ import mg.itu.tpbanquematthieun49.jsf.util.Util;
 import mg.itu.tpbanquematthieun49.service.GestionnaireCompte;
 
 /**
- *
+ * Backing pour gérer les transferts
  * @author Matthieu R
  */
 @Named(value = "transfert")

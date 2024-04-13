@@ -15,7 +15,7 @@ import mg.itu.tpbanquematthieun49.jsf.util.Util;
 import mg.itu.tpbanquematthieun49.service.GestionnaireCompte;
 
 /**
- *
+ * Backing bean pour la liste des comptes
  * @author Matthieu R
  */
 @Named(value = "listeComptes")

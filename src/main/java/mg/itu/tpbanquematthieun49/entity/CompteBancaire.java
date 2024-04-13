@@ -13,7 +13,7 @@ import jakarta.persistence.NamedQuery;
 import java.io.Serializable;
 
 /**
- *
+ * Classe Entity qui represente la table CompteBancaire
  * @author Matthieu R
  */
 @Entity

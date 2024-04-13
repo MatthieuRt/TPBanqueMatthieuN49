@@ -13,7 +13,7 @@ import mg.itu.tpbanquematthieun49.jsf.util.Util;
 import mg.itu.tpbanquematthieun49.service.GestionnaireCompte;
 
 /**
- *
+ * Backing bean pour l'ajout de compte
  * @author Matthieu R
  */
 @Named(value = "ajoutCompte")
