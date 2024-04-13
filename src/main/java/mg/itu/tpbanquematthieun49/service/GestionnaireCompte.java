@@ -51,51 +51,59 @@ public class GestionnaireCompte {
     public CompteBancaire findById(Long idCompteBancaire) {
         return em.find(CompteBancaire.class, idCompteBancaire);
     }
-    
+
     @Transactional
-    public void transfererArgent(Long idSource,Long idDestination,int montant){
+    public void transfererArgent(Long idSource, Long idDestination, int montant) {
         CompteBancaire source = this.findById(idSource);
         CompteBancaire destination = this.findById(idDestination);
-        
-        source.setSolde(source.getSolde()-montant);
-        destination.setSolde(destination.getSolde()+montant);
-        
+
+        source.setSolde(source.getSolde() - montant);
+        destination.setSolde(destination.getSolde() + montant);
+
         em.persist(source);
         em.persist(destination);
     }
-    
+
     @Transactional
-    public void update(CompteBancaire compteBancaire){
+    public void update(CompteBancaire compteBancaire) {
         em.merge(compteBancaire);
     }
-    
+
     @Transactional
-    public Long nbComptes(){
+    public Long nbComptes() {
         TypedQuery<Long> query = em.createNamedQuery("CompteBancaire.count", Long.class);
         // Exécutez la requête et récupérez le résultat
         Long compteCount = query.getSingleResult();
         // Retournez le nombre de comptes
         return compteCount;
     }
-        /**
+
+    /**
      * Dépôt d'argent sur un compte bancaire.
+     *
      * @param compteBancaire
-     * @param montant 
+     * @param montant
      */
     @Transactional
     public void deposer(CompteBancaire compteBancaire, int montant) {
-      compteBancaire.deposer(montant);
-      update(compteBancaire);
+        compteBancaire.deposer(montant);
+        update(compteBancaire);
     }
-    
+
     /**
      * Retrait d'argent sur un compte bancaire.
+     *
      * @param compteBancaire
-     * @param montant 
+     * @param montant
      */
     @Transactional
     public void retirer(CompteBancaire compteBancaire, int montant) {
-      compteBancaire.retirer(montant);
-      update(compteBancaire);
+        compteBancaire.retirer(montant);
+        update(compteBancaire);
+    }
+
+    @Transactional
+    public void supprimerCompte(CompteBancaire compte) {
+        em.remove(em.merge(compte));
     }
 }

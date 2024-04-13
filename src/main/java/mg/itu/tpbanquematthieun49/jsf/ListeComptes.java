@@ -11,6 +11,7 @@ import jakarta.inject.Inject;
 import java.io.Serializable;
 import java.util.List;
 import mg.itu.tpbanquematthieun49.entity.CompteBancaire;
+import mg.itu.tpbanquematthieun49.jsf.util.Util;
 import mg.itu.tpbanquematthieun49.service.GestionnaireCompte;
 
 /**
@@ -19,23 +20,30 @@ import mg.itu.tpbanquematthieun49.service.GestionnaireCompte;
  */
 @Named(value = "listeComptes")
 @ViewScoped
-public class ListeComptes implements Serializable{
+public class ListeComptes implements Serializable {
 
     @Inject
     GestionnaireCompte gestionnaireCompte;
-    
+
     private List<CompteBancaire> compteBancaires;
+
     /**
      * Creates a new instance of ListeComptes
      */
     public ListeComptes() {
     }
-    
-    public List<CompteBancaire> getAllComptes(){
-        if(compteBancaires==null){
+
+    public List<CompteBancaire> getAllComptes() {
+        if (compteBancaires == null) {
             compteBancaires = gestionnaireCompte.getAllComptes();
         }
         return compteBancaires;
     }
-    
+
+    public String supprimerCompte(CompteBancaire compteBancaire) {
+        gestionnaireCompte.supprimerCompte(compteBancaire);
+        Util.addFlashInfoMessage("Compte de " + compteBancaire.getNom() + " supprimé");
+        return "listeComptes?faces-redirect=true";
+    }
+
 }
