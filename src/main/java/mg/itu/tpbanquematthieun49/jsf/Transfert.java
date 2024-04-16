@@ -84,6 +84,10 @@ public class Transfert {
                 erreur = true;
                 Util.messageErreur("Solde insuffisant pour le transfert !");
             }
+            if(montant<0){
+                erreur = true;
+                Util.messageErreur("Le montant ne doit pas être inférieur à 0");
+            }
         }
         if (erreur) { // en cas d'erreur, rester sur la même page
             return null;

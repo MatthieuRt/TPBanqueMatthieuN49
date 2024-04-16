@@ -95,6 +95,22 @@ public class Mouvement implements Serializable {
                                 "Le retrait doit être inférieur au solde du compte");
                 throw new ValidatorException(message);
             }
+            if (retrait < 0) {
+                FacesMessage message
+                        = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                                "Le retrait ne doit pas être inférieur à 0",
+                                "Le retrait ne doit pas être inférieur à 0");
+                throw new ValidatorException(message);
+            }
+        } else {
+            int ajout = (int) valeur;
+            if (ajout < 0) {
+                FacesMessage message
+                        = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                                "Le retrait ne doit pas être inférieur à 0",
+                                "Le retrait ne doit pas être inférieur à 0");
+                throw new ValidatorException(message);
+            }
         }
     }
 
