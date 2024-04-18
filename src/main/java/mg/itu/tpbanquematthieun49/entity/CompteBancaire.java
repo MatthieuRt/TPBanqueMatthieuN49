@@ -57,6 +57,10 @@ public class CompteBancaire implements Serializable {
         return id;
     }
 
+    public List<OperationBancaire> getOperations() {
+        return operations;
+    }
+
     public CompteBancaire() {
 
     }
@@ -75,7 +79,7 @@ public class CompteBancaire implements Serializable {
     public void retirer(int montant) {
         if (montant < solde) {
             solde -= montant;
-            operations.add(new OperationBancaire("Crédit", montant*-1));
+            operations.add(new OperationBancaire("Débit", montant*-1));
         } else {
             solde = 0;
         }
