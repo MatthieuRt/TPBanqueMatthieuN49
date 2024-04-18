@@ -68,6 +68,7 @@ public class Transfert {
         boolean erreur = false;
         CompteBancaire source = gestionnaireCompte.findById(idSource);
         CompteBancaire destination = gestionnaireCompte.findById(idDestination);
+        System.out.println("***************=egal?"+(source==destination));
         if (source == null || destination == null) {
             // Message d'erreur associé au composant source ; form:source est l'id client
             // si l'id du formulaire est "form" et l'id du champ de saisie de l'id de la source est "source"
@@ -92,7 +93,7 @@ public class Transfert {
         if (erreur) { // en cas d'erreur, rester sur la même page
             return null;
         }
-        gestionnaireCompte.transfererArgent(idSource, idDestination, montant);        // Message de succès ; addFlash à cause de la redirection.
+        gestionnaireCompte.transfererArgent(source, destination, montant);        // Message de succès ; addFlash à cause de la redirection.
         // ...Complétez pour faire apparaitre le montant et les noms des 2 propriétaires des comptes.
         Util.addFlashInfoMessage("Transfert correctement effectué, source : "+idSource+",destination : "+idDestination+",montant : "+montant);
         return "listeComptes?faces-redirect=true";

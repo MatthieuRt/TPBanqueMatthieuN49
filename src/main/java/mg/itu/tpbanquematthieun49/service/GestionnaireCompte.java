@@ -53,15 +53,15 @@ public class GestionnaireCompte {
     }
 
     @Transactional
-    public void transfererArgent(Long idSource, Long idDestination, int montant) {
-        CompteBancaire source = this.findById(idSource);
-        CompteBancaire destination = this.findById(idDestination);
+    public void transfererArgent(CompteBancaire source, CompteBancaire destination, int montant) {
+//        CompteBancaire source = this.findById(idSource);
+//        CompteBancaire destination = this.findById(idDestination);
 
         source.setSolde(source.getSolde() - montant);
         destination.setSolde(destination.getSolde() + montant);
 
-        em.persist(source);
-        em.persist(destination);
+        update(source);
+        update(destination);
     }
 
     @Transactional
