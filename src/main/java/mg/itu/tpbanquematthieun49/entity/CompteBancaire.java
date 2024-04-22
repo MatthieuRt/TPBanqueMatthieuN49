@@ -23,7 +23,7 @@ import java.util.List;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "CompteBancaire.findAll", query = "SELECT c FROM CompteBancaire c"),
+    @NamedQuery(name = "CompteBancaire.findAll", query = "SELECT DISTINCT c FROM CompteBancaire as c join fetch c.operations"),
     @NamedQuery(name="CompteBancaire.count",query="SELECT count(c) FROM CompteBancaire c")})
     
 public class CompteBancaire implements Serializable {
@@ -34,7 +34,7 @@ public class CompteBancaire implements Serializable {
     private Long id;
     private String nom;
     private int solde;
-    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)  
+    @OneToMany(cascade=CascadeType.ALL)  
     private List<OperationBancaire> operations = new ArrayList<>();  
 
     public String getNom() {
